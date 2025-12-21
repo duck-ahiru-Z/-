@@ -1,0 +1,365 @@
+:root {
+    --primary-orange: #FF8C00;
+    --light-orange: #FFA500;
+    --pale-orange: #FFF3E0;
+    --leaf-green: #228B22;
+    --dark-green: #006400;
+    --off-white: #FAFAFA;
+    --text-dark: #333333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    
+    /* ベテランモード用の変数（初期値はオレンジと同じにしておく） */
+    --header-bg-start: var(--primary-orange);
+    --header-bg-end: var(--light-orange);
+}
+
+/* ベテランモード時のスタイル上書き */
+body.veteran-active {
+    --header-bg-start: var(--dark-green);
+    --header-bg-end: var(--leaf-green);
+}
+
+body {
+    font-family: 'M PLUS Rounded 1c', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--off-white);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.5s;
+}
+
+header {
+    background: linear-gradient(135deg, var(--header-bg-start), var(--header-bg-end));
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.5s ease; /* 色の変化をアニメーション */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+header p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Decorative leaf */
+.leaf-icon {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.3); /* 白っぽくして背景になじませる */
+    transform: rotate(45deg);
+}
+
+main {
+    flex: 1;
+    max-width: 800px;
+    width: 90%;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    padding: 2rem;
+    overflow: hidden;
+}
+
+/* Controls Section */
+.controls-card {
+    background: var(--pale-orange);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 140, 0, 0.2);
+    transition: background-color 0.5s;
+}
+
+/* ベテランモード時はカードの色も少し落ち着かせる */
+body.veteran-active .controls-card {
+    background: #f1f8e9; /* 薄い緑 */
+    border-color: var(--leaf-green);
+}
+
+.mode-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 10px;
+}
+
+.switch-label {
+    font-weight: bold;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+/* Custom Toggle - そのまま使用 */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+.toggle-checkbox {
+    display: none;
+}
+.toggle-slot {
+    position: relative;
+    height: 30px;
+    width: 60px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    background-color: white;
+    transition: background-color 250ms;
+    cursor: pointer;
+}
+.toggle-checkbox:checked ~ .toggle-slot {
+    background-color: var(--leaf-green);
+    border-color: var(--leaf-green);
+}
+.toggle-button {
+    transform: translate(2px, 2px);
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background-color: #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 250ms;
+}
+.toggle-checkbox:checked ~ .toggle-slot .toggle-button {
+    background-color: white;
+    transform: translate(32px, 2px);
+}
+
+/* Input Methods */
+.input-methods {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700; /* 太字に */
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-orange);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #e67e00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+}
+
+/* ベテランモード時のボタン色変更 */
+body.veteran-active .btn-primary {
+    background-color: var(--leaf-green);
+}
+body.veteran-active .btn-primary:hover {
+    background-color: var(--dark-green);
+    box-shadow: 0 4px 12px rgba(34, 139, 34, 0.3);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-orange);
+    color: var(--primary-orange);
+}
+.btn-outline:hover {
+    background-color: var(--pale-orange);
+}
+
+body.veteran-active .btn-outline {
+    border-color: var(--leaf-green);
+    color: var(--leaf-green);
+}
+body.veteran-active .btn-outline:hover {
+    background-color: #f1f8e9;
+}
+
+/* Preview Area */
+#preview-container {
+    margin-top: 2rem;
+    text-align: center;
+    min-height: 250px; /* 少し高さを確保 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ddd;
+    border-radius: 12px;
+    padding: 1rem;
+    position: relative;
+    background-color: #fafafa;
+}
+
+#preview-container.active {
+    border-color: var(--primary-orange);
+    background-color: var(--pale-orange);
+}
+
+/* Video & Image Responsiveness */
+#image-preview, #video-preview {
+    max-width: 100%;
+    max-height: 400px; /* 高すぎないように制限 */
+    width: auto;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    display: none;
+    object-fit: contain; /* アスペクト比を維持 */
+}
+
+/* Loading Overlay & Trivia */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--pale-orange);
+    border-top: 5px solid var(--primary-orange);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 2rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.trivia-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    
+    /* 修正1: デフォルト（通常版）をオレンジに変更 */
+    border-top: 6px solid var(--primary-orange);
+    /* モード切替時に色がふわっと変わるように設定 */
+    transition: border-top-color 0.3s ease; 
+}
+
+.trivia-title {
+    /* 修正2: デフォルト（通常版）をオレンジに変更 */
+    color: var(--primary-orange);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+/* =========================================
+   追記: ベテランモード時の上書き設定
+   (これをCSSの適当な場所、例えば上記のクラスのすぐ下に追加してください)
+   ========================================= */
+
+body.veteran-active .trivia-card {
+    border-top-color: var(--leaf-green);
+}
+
+body.veteran-active .trivia-title {
+    color: var(--leaf-green);
+}
+
+.trivia-content {
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+/* Results */
+#result-area {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    border-left: 6px solid var(--primary-orange);
+    box-shadow: var(--shadow);
+    display: none;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    font-size: 1.05rem;
+}
+
+body.veteran-active #result-area {
+    border-left-color: var(--leaf-green);
+    background-color: #fcfdfc;
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+.file-input {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* 左側の画像アイコン用設定 */
+.header-icon-left {
+    position: absolute;
+    top: 10px;          /* 上からの位置（画像に合わせて調整） */
+    left: 500px;         /* 左からの位置 */
+    width: 110px;        /* ★画像の横幅（ここで大きさを変えられます） */
+    height: auto;       /* 高さは自動調整 */
+    opacity: 0.3;       /* ★透明度（0.1～1.0） 0.3くらいが背景っぽくなります */
+    transform: rotate(0deg); /* 傾き */
+    z-index: 0;
+    pointer-events: none; /* 画像が文字の上にきても邪魔にならないようにするおまじない */
+}
+
+
+
