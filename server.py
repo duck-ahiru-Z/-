@@ -8,7 +8,7 @@ import io
 # 1. 設定エリア
 # ==========================================
 # ★ここにAPIキーを入れてください
-api_key = "AIzaSyDvycHEqSXo9l9s90bvp-CEAKF8ZlQ2ing"
+api_key = ""
 
 # 新しいクライアントの作成
 client = genai.Client(api_key=api_key)
@@ -109,4 +109,5 @@ def analyze():
 # 5. アプリ起動
 # ==========================================
 if __name__ == '__main__':
+
     app.run(debug=True, port=5000)
